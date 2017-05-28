@@ -25,6 +25,8 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService"/>
+
     <context:component-scan base-package="org.alesapps.**.web"/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
