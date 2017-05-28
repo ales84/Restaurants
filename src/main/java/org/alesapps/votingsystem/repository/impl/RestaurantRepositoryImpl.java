@@ -39,7 +39,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     @Transactional
     @Override
     public void deleteAll() {
-        em.createNamedQuery(Restaurant.DELETE_ALL);
+        em.createNamedQuery(Restaurant.DELETE_ALL).executeUpdate();
     }
 
     @Override
