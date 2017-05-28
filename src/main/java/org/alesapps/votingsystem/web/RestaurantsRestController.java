@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.alesapps.votingsystem.web.RestaurantsRestController.REST_URL;
+
 /**
  * Created by Anatoliy Kozhayev on 01.05.2017.
  */
 @RestController
-@RequestMapping(value = "/restaurants")
+@RequestMapping(REST_URL)
 public class RestaurantsRestController extends RootController {
+    static final String REST_URL = "/api/v1/restaurants";
 
     private RestaurantService restaurantService;
 
@@ -24,15 +27,9 @@ public class RestaurantsRestController extends RootController {
         this.restaurantService = restaurantService;
     }
 
-    @JsonView(View.Summary.class)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Restaurant> getRestaurants() {
         return restaurantService.getAll();
-    }
-
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Restaurant getRestaurant(@PathVariable("id") Integer id) {
-        return restaurantService.get(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,62 +44,24 @@ public class RestaurantsRestController extends RootController {
         return restaurants;
     }
 
+    @DeleteMapping
+    public void deleteRestaurants() {
+        restaurantService.deleteAll();
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Restaurant getRestaurant(@PathVariable("id") Integer id) {
+        return restaurantService.get(id);
+    }
+
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Restaurant updateRestaurant(@PathVariable("id") Integer id, @RequestBody Restaurant restaurant) {
         restaurant.setId(id);
         return restaurantService.update(restaurant);
     }
 
-    @DeleteMapping
-    public void deleteRestaurants() {
-        restaurantService.deleteAll();
-    }
-
     @DeleteMapping(value = "/{id}")
-    public int deleteRestaurant(@PathVariable("id") Integer id) {
+    public void deleteRestaurant(@PathVariable("id") Integer id) {
         restaurantService.delete(id);
-        return id;
     }
-
-/*
-    @GetMapping(value = "/{restaurantId}/dishes", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Dish> getRestaurantDishes(@PathVariable("restaurantId") Integer restaurantId) {
-        return dishService.getAllByRestaurantId(restaurantId);
-    }
-
-    @GetMapping(value = "/{restaurantId}/dishes/{dishId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dish getRestaurantDish(@PathVariable("restaurantId") Integer restaurantId, @PathVariable("dishId") Integer dishId) {
-        return dishService.get(dishId, restaurantId);
-    }
-
-    @PostMapping(value = "/{restaurantId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dish createRestaurantDish(@PathVariable("restaurantId") Integer restaurantId, @RequestBody Dish dish) {
-        dish.setId(null);
-        return dishService.create(dish, restaurantId);
-    }
-
-    @PutMapping(value = "/{restaurantId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Dish> updateRestaurantDishes(@PathVariable("restaurantId") Integer restaurantId, @RequestBody List<Dish> dishes) {
-        dishes.forEach(dish -> dishService.update(dish, restaurantId));
-        return dishes;
-    }
-
-    @PutMapping(value = "/{restaurantId}/dishes/{dishId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dish updateRestaurantDish(@PathVariable("restaurantId") Integer restaurantId,
-                                     @PathVariable("dishId") Integer dishId, @RequestBody Dish dish) {
-        dish.setId(dishId);
-        return dishService.update(dish, restaurantId);
-    }
-
-    @DeleteMapping(value = "/{restaurantId}/dishes")
-    public void deleteRestaurantDishes(@PathVariable("restaurantId") Integer restaurantId) {
-        dishService.deleteAllByRestaurantId(restaurantId);
-    }
-
-    @DeleteMapping(value = "/{restaurantId}/dishes/{dishId}")
-    public int deleteRestaurantDish(@PathVariable("restaurantId") Integer restaurantId, @PathVariable("dishId") Integer dishId) {
-        dishService.delete(dishId, restaurantId);
-        return dishId;
-    }
-*/
 }
