@@ -12,6 +12,7 @@ import java.util.Set;
  */
 @NamedQueries({
         @NamedQuery(name = Menu.DELETE, query = "DELETE FROM Menu m WHERE m.id=:id"),
+        @NamedQuery(name = Menu.DELETE_ALL, query = "DELETE FROM Menu m"),
         @NamedQuery(name = Menu.ALL, query = "SELECT m FROM Menu m")
 })
 @Entity
@@ -19,6 +20,7 @@ import java.util.Set;
 public class Menu extends BaseEntity {
 
     public static final String DELETE = "Menu.delete";
+    public static final String DELETE_ALL = "Menu.deleteAll";
     public static final String ALL = "Menu.getAll";
 
     @ManyToOne(fetch = FetchType.EAGER)
