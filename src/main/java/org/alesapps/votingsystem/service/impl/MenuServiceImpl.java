@@ -47,6 +47,11 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public void deleteAll() {
+        menuRepository.deleteAll();
+    }
+
+    @Override
     public List<Menu> getAll() {
         return menuRepository.getAll();
     }
