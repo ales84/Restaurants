@@ -41,7 +41,7 @@ public class MenuRepositoryImpl implements MenuRepository {
     @Transactional
     @Override
     public void deleteAll() {
-        em.createNamedQuery(Menu.DELETE_ALL);
+        em.createNamedQuery(Menu.DELETE_ALL).executeUpdate();
     }
 
     @Override
