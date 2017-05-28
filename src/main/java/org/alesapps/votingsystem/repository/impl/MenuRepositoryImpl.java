@@ -38,6 +38,12 @@ public class MenuRepositoryImpl implements MenuRepository {
         return em.createNamedQuery(Menu.DELETE).setParameter("id", id).executeUpdate() != 0;
     }
 
+    @Transactional
+    @Override
+    public void deleteAll() {
+        em.createNamedQuery(Menu.DELETE_ALL);
+    }
+
     @Override
     public Menu get(int id) {
         return em.find(Menu.class, id);
