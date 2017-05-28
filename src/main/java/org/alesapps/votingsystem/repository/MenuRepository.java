@@ -13,6 +13,8 @@ public interface MenuRepository {
 
     boolean delete(int id);
 
+    void deleteAll();
+
     Menu get(int id);
 
     List<Menu> getAll();
