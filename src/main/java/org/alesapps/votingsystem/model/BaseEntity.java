@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class BaseEntity {
 
-    @JsonView(View.Summary.class)
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
@@ -36,7 +35,6 @@ public class BaseEntity {
         return id;
     }
 
-    @JsonIgnore
     public boolean isNew() {
         return (getId() == null);
     }
