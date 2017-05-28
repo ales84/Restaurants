@@ -21,12 +21,10 @@ public class Menu extends BaseEntity {
     public static final String DELETE = "Menu.delete";
     public static final String ALL = "Menu.getAll";
 
-    @JsonView(View.Summary.class)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @JsonView(View.Summary.class)
     @Column(name = "date", columnDefinition = "timestamp default now()")
     private LocalDate date;
 
