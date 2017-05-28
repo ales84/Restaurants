@@ -18,5 +18,7 @@ public interface MenuService {
 
     void delete(int id) throws NotFoundException;
 
+    void deleteAll();
+
     List<Menu> getAll();
 }
