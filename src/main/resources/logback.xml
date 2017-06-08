@@ -21,7 +21,7 @@
     </appender>
 
     <logger name="org.alesapps.votingsystem" level="debug"/>
-    <logger name="org.springframework.web.servlet" level="debug"/>
+<!--    <logger name="org.springframework.web.servlet" level="debug"/>-->
 
     <root level="info">
         <appender-ref ref="file"/>
