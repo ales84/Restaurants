@@ -2,6 +2,7 @@ package org.alesapps.votingsystem.repository.impl;
 
 import org.alesapps.votingsystem.model.User;
 import org.alesapps.votingsystem.repository.UserRepository;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +43,15 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User getByName(String name) {
+        List<User> users = em.createNamedQuery(User.GET_BY_NAME, User.class)
+                .setParameter("name", name)
+                .getResultList();
+        return DataAccessUtils.singleResult(users);
+    }
+
+    @Override
     public List<User> getAll() {
-        return em.createNamedQuery(User.ALL, User.class).getResultList();
+        return em.createNamedQuery(User.GET_ALL, User.class).getResultList();
     }
 }
