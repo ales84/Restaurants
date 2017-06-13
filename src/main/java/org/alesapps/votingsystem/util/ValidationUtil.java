@@ -26,6 +26,17 @@ public class ValidationUtil {
         }
     }
 
+    public static <T> T checkNotFound(T object) {
+        checkNotFound(object != null);
+        return object;
+    }
+
+    public static void checkNotFound(boolean found) {
+        if (!found) {
+            throw new NotFoundException("Not found entity");
+        }
+    }
+
     public static void checkNew(BaseEntity entity) {
         if (!entity.isNew()) {
             throw new IllegalArgumentException(entity + " must be new (id=null)");
