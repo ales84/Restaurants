@@ -16,7 +16,8 @@ import java.time.LocalDate;
         @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote v WHERE v.id=:id"),
         @NamedQuery(name = Vote.DELETE_ALL, query = "DELETE FROM Vote v"),
         @NamedQuery(name = Vote.GET_ALL, query = "SELECT v FROM Vote v"),
-        @NamedQuery(name = Vote.GET_ALL_BY_DATE, query = "SELECT v FROM Vote v WHERE v.date=:date")
+        @NamedQuery(name = Vote.GET_ALL_BY_DATE, query = "SELECT v FROM Vote v WHERE v.date=:date"),
+        @NamedQuery(name = Vote.GET_BY_USER_AND_DATE, query = "SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date")
 })
 @Entity
 @Table(name = "votes", uniqueConstraints = {@UniqueConstraint(name = "votes_user_date_idx", columnNames = {"user_id", "date"})})
@@ -26,6 +27,7 @@ public class Vote extends BaseEntity {
     public static final String DELETE_ALL = "Vote.deleteAll";
     public static final String GET_ALL = "Vote.getAll";
     public static final String GET_ALL_BY_DATE = "Vote.getAllByDate";
+    public static final String GET_BY_USER_AND_DATE = "Vote.getByUserAndDate";
 
     @JsonProperty(value = "userId")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
