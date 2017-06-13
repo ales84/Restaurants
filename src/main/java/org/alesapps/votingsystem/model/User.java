@@ -12,14 +12,16 @@ import java.util.Set;
  */
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.ALL, query = "SELECT u FROM User u")
+        @NamedQuery(name = User.GET_BY_NAME, query = "SELECT u FROM User u WHERE u.name=:name"),
+        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u")
 })
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(name = "user_name_idx", columnNames = "name")})
 public class User extends BaseEntity {
 
     public static final String DELETE = "User.delete";
-    public static final String ALL = "User.getAll";
+    public static final String GET_BY_NAME = "User.getByName";
+    public static final String GET_ALL = "User.getAll";
 
     @NotBlank
     @Column(name = "name", unique = true, nullable = false)
@@ -73,7 +75,7 @@ public class User extends BaseEntity {
     public String toString() {
         return "User{" +
                 "id=" + getId() +
-                ", name='" + name +
+                ", name=" + name +
                 ", roles=" + roles +
                 '}';
     }
