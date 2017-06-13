@@ -33,6 +33,7 @@ public class Dish extends BaseEntity {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
     @JsonIgnore
