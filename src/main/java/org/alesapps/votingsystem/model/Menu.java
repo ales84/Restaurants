@@ -1,6 +1,7 @@
 package org.alesapps.votingsystem.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -25,9 +26,7 @@ public class Menu extends BaseEntity {
     public static final String GET_ALL_BY_DATE = "Menu.getAllByDate";
     public static final String GET_ALL_BY_DATE_AND_RESTAURANT = "Menu.getAllByDateAndRestaurant";
 
-    //    @JsonProperty(value = "restaurantId")
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
