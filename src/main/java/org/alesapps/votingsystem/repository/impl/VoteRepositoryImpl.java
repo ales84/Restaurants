@@ -4,6 +4,7 @@ import org.alesapps.votingsystem.model.Restaurant;
 import org.alesapps.votingsystem.model.User;
 import org.alesapps.votingsystem.model.Vote;
 import org.alesapps.votingsystem.repository.VoteRepository;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,7 +55,11 @@ public class VoteRepositoryImpl implements VoteRepository {
 
     @Override
     public Vote getByUserIdAndDate(int userId, LocalDate date) {
-        return null;
+        List<Vote> votes = em.createNamedQuery(Vote.GET_BY_USER_AND_DATE, Vote.class)
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getResultList();
+        return DataAccessUtils.singleResult(votes);
     }
 
     @Override
