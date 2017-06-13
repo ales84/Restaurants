@@ -1,8 +1,5 @@
 package org.alesapps.votingsystem.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import org.alesapps.votingsystem.json.View;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -11,9 +8,12 @@ import java.util.Set;
  * Created by Anatoliy Kozhayev on 17.04.2017.
  */
 @NamedQueries({
-        @NamedQuery(name = Menu.DELETE, query = "DELETE FROM Menu m WHERE m.id=:id"),
+        @NamedQuery(name = Menu.DELETE, query = "DELETE FROM Menu m WHERE m.id=:id AND m.restaurant.id=:restaurantId"),
         @NamedQuery(name = Menu.DELETE_ALL, query = "DELETE FROM Menu m"),
-        @NamedQuery(name = Menu.ALL, query = "SELECT m FROM Menu m")
+        @NamedQuery(name = Menu.GET_ALL, query = "SELECT m FROM Menu m"),
+        @NamedQuery(name = Menu.GET_ALL_BY_DATE, query = "SELECT m FROM Menu m WHERE m.date=:date"),
+        @NamedQuery(name = Menu.GET_ALL_BY_DATE_AND_RESTAURANT, query = "SELECT m FROM Menu m WHERE m.date=:date" +
+                " AND m.restaurant.id=:restaurantId")
 })
 @Entity
 @Table(name = "menus", uniqueConstraints = {@UniqueConstraint(name = "menus_restaurant_date_idx", columnNames = {"restaurant_id", "date"})})
@@ -21,8 +21,13 @@ public class Menu extends BaseEntity {
 
     public static final String DELETE = "Menu.delete";
     public static final String DELETE_ALL = "Menu.deleteAll";
-    public static final String ALL = "Menu.getAll";
+    public static final String GET_ALL = "Menu.getAll";
+    public static final String GET_ALL_BY_DATE = "Menu.getAllByDate";
+    public static final String GET_ALL_BY_DATE_AND_RESTAURANT = "Menu.getAllByDateAndRestaurant";
 
+    //    @JsonProperty(value = "restaurantId")
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
@@ -70,10 +75,10 @@ public class Menu extends BaseEntity {
     @Override
     public String toString() {
         return "Menu{" +
-                "id='" + getId() +
-                "restaurant=" + restaurant.getName() +
+                "id=" + getId() +
+                ", restaurant=" + restaurant +
                 ", date=" + date +
-                ", dishes=" + dishes.size() +
+                ", dishes=" + dishes +
                 '}';
     }
 }
