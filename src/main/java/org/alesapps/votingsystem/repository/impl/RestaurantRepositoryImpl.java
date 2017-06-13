@@ -49,6 +49,6 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public List<Restaurant> getAll() {
-        return em.createNamedQuery(Restaurant.ALL, Restaurant.class).getResultList();
+        return em.createNamedQuery(Restaurant.GET_ALL, Restaurant.class).getResultList();
     }
 }
