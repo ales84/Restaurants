@@ -13,7 +13,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  */
 public class JacksonObjectMapper extends ObjectMapper {
 
-    private static final ObjectMapper MAPPER=new JacksonObjectMapper();
+    private static final ObjectMapper MAPPER = new JacksonObjectMapper();
 
     public static ObjectMapper getMapper() {
         return MAPPER;
@@ -26,7 +26,7 @@ public class JacksonObjectMapper extends ObjectMapper {
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
         setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
-        setVisibility(PropertyAccessor.FIELD,JsonAutoDetect.Visibility.ANY);
+        setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 }
