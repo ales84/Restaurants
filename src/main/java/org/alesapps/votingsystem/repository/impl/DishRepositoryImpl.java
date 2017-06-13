@@ -2,7 +2,6 @@ package org.alesapps.votingsystem.repository.impl;
 
 import org.alesapps.votingsystem.model.Dish;
 import org.alesapps.votingsystem.model.Menu;
-import org.alesapps.votingsystem.model.Restaurant;
 import org.alesapps.votingsystem.repository.DishRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,12 +60,12 @@ public class DishRepositoryImpl implements DishRepository {
 
     @Override
     public List<Dish> getAll() {
-        return em.createNamedQuery(Dish.ALL, Dish.class).getResultList();
+        return em.createNamedQuery(Dish.GET_ALL, Dish.class).getResultList();
     }
 
     @Override
     public List<Dish> getAllByMenuId(int menuId) {
-        return em.createNamedQuery(Dish.ALL_BY_MENU_ID, Dish.class)
+        return em.createNamedQuery(Dish.GET_ALL_BY_MENU_ID, Dish.class)
                 .setParameter("menuId", menuId)
                 .getResultList();
     }
