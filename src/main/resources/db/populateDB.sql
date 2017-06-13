@@ -41,6 +41,6 @@ INSERT INTO dishes (menu_id, name, price) VALUES
   /*21*/(12, 'Суши', 220);
 
 INSERT INTO votes (user_id, restaurant_id, date) VALUES
-  (1, 4, '2017-06-08'),
-  (2, 5, '2017-06-08'),
-  (3, 4, '2017-06-08');
+  /*22*/(1, 4, '2017-06-08'),
+  /*23*/(2, 5, '2017-06-08'),
+  /*24*/(3, 4, '2017-06-08');
