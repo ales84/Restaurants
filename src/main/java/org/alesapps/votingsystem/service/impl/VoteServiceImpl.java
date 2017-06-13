@@ -30,10 +30,8 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public Vote create(Vote vote, int userId, int restaurantId) throws TooLateException {
         Assert.notNull(vote, "vote must not be null");
-        Vote oldVote;
-        try {
-            oldVote = voteRepository.getByUserIdAndDate(userId, vote.getDate());
-        } catch (NotFoundException e) {
+        Vote oldVote = voteRepository.getByUserIdAndDate(userId, vote.getDate());
+        if (oldVote == null) {
             return voteRepository.save(vote, userId, restaurantId);
         }
         if (LocalTime.now().isBefore(LocalTime.of(11, 0))) {
