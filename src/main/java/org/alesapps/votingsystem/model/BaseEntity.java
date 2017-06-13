@@ -1,8 +1,5 @@
 package org.alesapps.votingsystem.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-import org.alesapps.votingsystem.json.View;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
