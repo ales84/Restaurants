@@ -1,6 +1,7 @@
 package org.alesapps.votingsystem.service;
 
 import org.alesapps.votingsystem.model.User;
+import org.alesapps.votingsystem.to.UserTo;
 import org.alesapps.votingsystem.util.exception.NotFoundException;
 
 import java.util.List;
@@ -14,7 +15,11 @@ public interface UserService {
 
     User get(int id) throws NotFoundException;
 
+    User getByName(String name) throws NotFoundException;
+
     void update(User user);
+
+    void update(UserTo userTo);
 
     void delete(int id) throws NotFoundException;
 
