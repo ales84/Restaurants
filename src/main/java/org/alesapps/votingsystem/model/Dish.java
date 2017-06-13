@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 @NamedQueries({
         @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:id AND d.menu.id=:menuId"),
         @NamedQuery(name = Dish.DELETE_ALL_BY_MENU_ID, query = "DELETE FROM Dish d WHERE d.menu.id=:menuId"),
-        @NamedQuery(name = Dish.ALL, query = "SELECT d FROM Dish d"),
-        @NamedQuery(name = Dish.ALL_BY_MENU_ID, query = "SELECT d FROM Dish d WHERE d.menu.id=:menuId")
+        @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d"),
+        @NamedQuery(name = Dish.GET_ALL_BY_MENU_ID, query = "SELECT d FROM Dish d WHERE d.menu.id=:menuId")
 })
 @Entity
 @Table(name = "dishes")
@@ -22,8 +22,8 @@ public class Dish extends BaseEntity {
 
     public static final String DELETE = "Dish.delete";
     public static final String DELETE_ALL_BY_MENU_ID = "Dish.deleteAllByMenuId";
-    public static final String ALL = "Dish.getAll";
-    public static final String ALL_BY_MENU_ID = "Dish.getAllByMenuId";
+    public static final String GET_ALL = "Dish.getAll";
+    public static final String GET_ALL_BY_MENU_ID = "Dish.getAllByMenuId";
 
     @NotBlank
     @Column(name = "name", nullable = false)
@@ -33,7 +33,7 @@ public class Dish extends BaseEntity {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
     @JsonIgnore
     private Menu menu;
@@ -75,10 +75,9 @@ public class Dish extends BaseEntity {
     @Override
     public String toString() {
         return "Dish{" +
-                "id='" + getId() +
-                "name='" + name +
+                "id=" + getId() +
+                ", name=" + name +
                 ", price=" + price +
-                ", menu=" + menu.getDate() +
                 '}';
     }
 }
