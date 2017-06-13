@@ -7,9 +7,9 @@ DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 1;
 
 INSERT INTO users (name, password) VALUES
-  ('user1', 'pass1'),
-  ('user2', 'pass2'),
-  ('admin', 'admin');
+  /*pass1*/('user1', '$2a$10$rnzgFLTBv9CflcoFNOVYJeeDt5L9TPBTlqaDS0pV1/0Z9gzVJr5Im'),
+  /*pass2*/('user2', '$2a$10$ezeChTkLXslhexdaHbZvkuNiuQ0n54X4sqlQsAOOwYOUblFkIph1a'),
+  /*admin*/('admin', '$2a$10$OeOK2UDzB6yTcQH9nME/7eYYsG7hGZToA4jEpA9GglaCEiqKNZjkW');
 
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 1),
