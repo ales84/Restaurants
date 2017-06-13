@@ -1,6 +1,7 @@
 package org.alesapps.votingsystem.web;
 
 import org.alesapps.votingsystem.util.exception.NotFoundException;
+import org.alesapps.votingsystem.util.exception.TooLateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,11 @@ public class RootController {
 
     @ExceptionHandler(NotFoundException.class)
     public String handleNotFoundException(NotFoundException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(TooLateException.class)
+    public String handleTooLateException(TooLateException ex) {
         return ex.getMessage();
     }
 }
