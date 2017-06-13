@@ -12,8 +12,8 @@ import java.util.Set;
  */
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.GET_BY_NAME, query = "SELECT u FROM User u WHERE u.name=:name"),
-        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u")
+        @NamedQuery(name = User.GET_BY_NAME, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles WHERE u.name=:name"),
+        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles")
 })
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(name = "user_name_idx", columnNames = "name")})
