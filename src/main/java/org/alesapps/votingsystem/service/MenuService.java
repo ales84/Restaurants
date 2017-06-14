@@ -26,4 +26,6 @@ public interface MenuService {
     List<Menu> getAllByDate(LocalDate date);
 
     List<Menu> getAllByDate(LocalDate date, int restaurantId);
+
+    void evictCache();
 }
