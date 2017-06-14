@@ -6,6 +6,8 @@ import org.alesapps.votingsystem.service.RestaurantService;
 import org.alesapps.votingsystem.util.ValidationUtil;
 import org.alesapps.votingsystem.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -24,6 +26,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
+    @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public Restaurant create(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
@@ -35,24 +38,34 @@ public class RestaurantServiceImpl implements RestaurantService {
         return ValidationUtil.checkNotFoundWithId(restaurantRepository.get(id), id);
     }
 
+    @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public Restaurant update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
         return restaurantRepository.save(restaurant);
     }
 
+    @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         ValidationUtil.checkNotFoundWithId(restaurantRepository.delete(id), id);
     }
 
+    @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public void deleteAll() {
         restaurantRepository.deleteAll();
     }
 
+    @Cacheable("restaurants")
     @Override
     public List<Restaurant> getAll() {
         return restaurantRepository.getAll();
+    }
+
+    @CacheEvict(value = "restaurants", allEntries = true)
+    @Override
+    public void evictCache() {
+        // only for evict cache
     }
 }

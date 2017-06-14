@@ -21,4 +21,6 @@ public interface RestaurantService {
     void deleteAll();
 
     List<Restaurant> getAll();
+
+    void evictCache();
 }

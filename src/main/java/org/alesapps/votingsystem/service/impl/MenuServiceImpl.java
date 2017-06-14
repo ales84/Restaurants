@@ -8,6 +8,8 @@ import org.alesapps.votingsystem.service.MenuService;
 import org.alesapps.votingsystem.util.ValidationUtil;
 import org.alesapps.votingsystem.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -31,6 +33,7 @@ public class MenuServiceImpl implements MenuService {
         this.dishRepository = dishRepository;
     }
 
+    @CacheEvict(value = "menus", allEntries = true)
     @Override
     public Menu create(Menu menu, int restaurantId) {
         Assert.notNull(menu, "menu must not be null");
@@ -53,6 +56,7 @@ public class MenuServiceImpl implements MenuService {
         return ValidationUtil.checkNotFoundWithId(menuRepository.get(id, restaurantId), id);
     }
 
+    @CacheEvict(value = "menus", allEntries = true)
     @Override
     public Menu update(Menu menu, int restaurantId) {
         Assert.notNull(menu, "menu must not be null");
@@ -73,11 +77,13 @@ public class MenuServiceImpl implements MenuService {
         return menuRepository.save(menu, restaurantId);
     }
 
+    @CacheEvict(value = "menus", allEntries = true)
     @Override
     public void delete(int id, int restaurantId) throws NotFoundException {
         ValidationUtil.checkNotFoundWithId(menuRepository.delete(id, restaurantId), id);
     }
 
+    @CacheEvict(value = "menus", allEntries = true)
     @Override
     public void deleteAll() {
         menuRepository.deleteAll();
@@ -88,6 +94,7 @@ public class MenuServiceImpl implements MenuService {
         return menuRepository.getAll();
     }
 
+    @Cacheable("menus")
     @Override
     public List<Menu> getAllByDate(LocalDate date) {
         return menuRepository.getAllByDate(date);
@@ -96,5 +103,11 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<Menu> getAllByDate(LocalDate date, int restaurantId) {
         return menuRepository.getAllByDate(date, restaurantId);
+    }
+
+    @CacheEvict(value = "menus", allEntries = true)
+    @Override
+    public void evictCache() {
+        // only for evict cache
     }
 }
