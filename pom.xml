@@ -39,7 +39,6 @@
     </properties>
 
     <build>
-        <finalName>restaurants</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>
@@ -49,6 +48,13 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
             <plugin>
