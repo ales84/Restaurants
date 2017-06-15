@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RootController {
 
-    @RequestMapping(value = "/*", method = RequestMethod.GET)
+/*
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String root() {
         return "index";
     }
+*/
 
     @ExceptionHandler(NotFoundException.class)
     public String handleNotFoundException(NotFoundException ex) {
