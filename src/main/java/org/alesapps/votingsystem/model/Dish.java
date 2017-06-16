@@ -42,11 +42,10 @@ public class Dish extends BaseEntity {
     public Dish() {
     }
 
-    public Dish(Integer id, String name, BigDecimal price, Menu menu) {
+    public Dish(Integer id, String name, BigDecimal price) {
         super(id);
         this.name = name;
         this.price = price;
-        this.menu = menu;
     }
 
     public String getName() {
