@@ -29,7 +29,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableCaching
-@ComponentScan(basePackages = {"org.alesapps.**.repository", "org.alesapps.**.service"})
+@ComponentScan(basePackages = {"org.alesapps.votingsystem.repository", "org.alesapps.votingsystem.service"})
 @PropertySource({"classpath:db/postgres.properties"})
 public class AppConfig {
 

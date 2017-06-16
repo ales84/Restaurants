@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.alesapps.**.web"})
+@ComponentScan(basePackages = {"org.alesapps.votingsystem.web"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
