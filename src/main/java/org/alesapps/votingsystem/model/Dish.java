@@ -46,6 +46,7 @@ public class Dish extends BaseEntity {
         super(id);
         this.name = name;
         this.price = price;
+        this.menu = null;
     }
 
     public String getName() {
