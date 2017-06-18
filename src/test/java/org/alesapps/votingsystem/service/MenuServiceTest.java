@@ -56,6 +56,11 @@ public class MenuServiceTest extends AbstractServiceTest {
 
     @Test
     public void update() throws Exception {
+        Menu updated = new Menu(MENU1_ID, MENU1.getRestaurant(), MENU1.getDate(), MENU1.getDishes());
+        updated.setDate(LocalDate.of(2017, 6, 18));
+        updated.setDishes(DISHES_MENU5);
+        service.update(updated, MENU1.getRestaurant().getId());
+        assertThat(service.get(MENU1_ID, MENU1.getRestaurant().getId()), is(updated));
     }
 
     @Test
