@@ -11,6 +11,7 @@
         </encoder>
     </appender>
 
+    <logger name="org.springframework.jdbc" level="debug"/>
     <logger name="org.alesapps.votingsystem" level="debug"/>
 
     <root level="WARN">
