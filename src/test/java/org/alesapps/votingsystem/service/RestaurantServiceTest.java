@@ -53,7 +53,7 @@ public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Test
     public void update() throws Exception {
-        Restaurant updated = new Restaurant(RESTAURANT1.getId(), RESTAURANT1.getName());
+        Restaurant updated = new Restaurant(RESTAURANT1_ID, RESTAURANT1.getName());
         updated.setName("Новый ресторан");
         service.update(updated);
         assertThat(service.get(RESTAURANT1_ID), is(updated));
