@@ -52,12 +52,6 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Vote update(Vote vote, int userId, int restaurantId) {
-        Assert.notNull(vote, "vote must not be null");
-        return voteRepository.save(vote, userId, restaurantId);
-    }
-
-    @Override
     public void delete(int id) throws NotFoundException {
         ValidationUtil.checkNotFoundWithId(voteRepository.delete(id), id);
     }
