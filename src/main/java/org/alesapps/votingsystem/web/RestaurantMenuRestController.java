@@ -81,7 +81,7 @@ public class RestaurantMenuRestController extends RootController {
                                   @RequestParam(value = "date")
                                   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         LOG.info("getAll menus date {} for restaurant {}", date, restaurantId);
-        return menuService.getAllByDate(date, restaurantId);
+        return menuService.getAllByDateAndRestaurantId(date, restaurantId);
     }
 
     @PostMapping(value = "/{restaurantId}/menus", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
