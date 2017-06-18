@@ -101,7 +101,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<Menu> getAllByDate(LocalDate date, int restaurantId) {
+    public List<Menu> getAllByDateAndRestaurantId(LocalDate date, int restaurantId) {
         return menuRepository.getAllByDate(date, restaurantId);
     }
 
