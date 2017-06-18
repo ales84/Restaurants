@@ -43,7 +43,6 @@ public class MenuServiceTest extends AbstractServiceTest {
         service.create(new Menu(null, MENU3.getRestaurant(), MENU3.getDate(), DISHES_MENU5), MENU3.getRestaurant().getId());
     }
 
-
     @Test
     public void get() throws Exception {
         Menu actual = service.get(MENU1_ID, MENU1.getRestaurant().getId());
