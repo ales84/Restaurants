@@ -21,6 +21,4 @@ public class VoteTestData {
     public static final Vote VOTE1 = new Vote(VOTE1_ID, USER1, RESTAURANT1, LocalDate.of(2017, 6, 8));
     public static final Vote VOTE2 = new Vote(VOTE1_ID + 1, USER2, RESTAURANT2, LocalDate.of(2017, 6, 8));
     public static final Vote VOTE3 = new Vote(VOTE1_ID + 2, ADMIN, RESTAURANT1, LocalDate.of(2017, 6, 8));
-
-    public static final List<Vote> VOTES = Arrays.asList(VOTE1, VOTE2, VOTE3);
 }
