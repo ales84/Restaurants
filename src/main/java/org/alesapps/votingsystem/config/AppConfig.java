@@ -111,7 +111,7 @@ public class AppConfig {
     @Bean(name = "transactionManager")
     public JpaTransactionManager getJpaTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(getLocalContainerEntityManagerFactoryBean().getNativeEntityManagerFactory());
+        transactionManager.setEntityManagerFactory(getLocalContainerEntityManagerFactoryBean().getObject());
         return transactionManager;
     }
 
