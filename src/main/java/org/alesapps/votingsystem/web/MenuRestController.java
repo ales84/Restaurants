@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.alesapps.votingsystem.web.MenuRestController.REST_URL;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Created by Anatoliy Kozhayev on 08.05.2017.
@@ -23,7 +24,7 @@ import static org.alesapps.votingsystem.web.MenuRestController.REST_URL;
 @RestController
 @RequestMapping(REST_URL)
 public class MenuRestController extends RootController {
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private static final Logger LOG = getLogger(MenuRestController.class);
 
     static final String REST_URL = "/api/v1/menus";
 

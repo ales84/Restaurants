@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.alesapps.votingsystem.web.VoteRestController.REST_URL;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Created by Anatoliy Kozhayev on 10.06.2017.
@@ -23,7 +24,7 @@ import static org.alesapps.votingsystem.web.VoteRestController.REST_URL;
 @RestController
 @RequestMapping(REST_URL)
 public class VoteRestController {
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private static final Logger LOG = getLogger(VoteRestController.class);
 
     static final String REST_URL = "/api/v1/admin/votes";
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import static org.alesapps.votingsystem.web.ProfileRestController.REST_URL;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Created by Anatoliy Kozhayev on 12.06.2017.
@@ -21,7 +22,7 @@ import static org.alesapps.votingsystem.web.ProfileRestController.REST_URL;
 @RestController
 @RequestMapping(REST_URL)
 public class ProfileRestController extends RootController {
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private static final Logger LOG = getLogger(ProfileRestController.class);
 
     static final String REST_URL = "/api/v1/profile";
 
