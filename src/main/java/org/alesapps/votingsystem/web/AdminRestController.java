@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class AdminRestController extends RootController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> create(@RequestBody User user) {
+    public ResponseEntity<User> create(@Valid @RequestBody User user) {
         user.setId(null);
         LOG.info("create {}", user);
         User created = userService.create(user);
@@ -58,7 +59,7 @@ public class AdminRestController extends RootController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@PathVariable Integer id, @RequestBody User user) {
+    public void update(@PathVariable Integer id, @Valid @RequestBody User user) {
         user.setId(id);
         LOG.info("update {} with id={}", user, id);
         userService.update(user);
