@@ -20,6 +20,7 @@ public class RootController {
     }
 */
 
+/*
     @ExceptionHandler(NotFoundException.class)
     public String handleNotFoundException(NotFoundException ex) {
         return ex.getMessage();
@@ -29,4 +30,5 @@ public class RootController {
     public String handleTooLateException(TooLateException ex) {
         return ex.getMessage();
     }
+*/
 }
