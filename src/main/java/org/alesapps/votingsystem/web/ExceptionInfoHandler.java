@@ -3,7 +3,6 @@ package org.alesapps.votingsystem.web;
 import org.alesapps.votingsystem.util.ValidationUtil;
 import org.alesapps.votingsystem.util.exception.ApplicationException;
 import org.alesapps.votingsystem.util.exception.ErrorInfo;
-import org.alesapps.votingsystem.util.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
