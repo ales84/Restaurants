@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 import static org.alesapps.votingsystem.web.ProfileRestController.REST_URL;
 
 /**
@@ -37,7 +39,7 @@ public class ProfileRestController extends RootController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+    public void update(@Valid @RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         userTo.setId(authorizedUser.getId());
         LOG.info("update {} with id={}", userTo, authorizedUser.getId());
         userService.update(userTo);

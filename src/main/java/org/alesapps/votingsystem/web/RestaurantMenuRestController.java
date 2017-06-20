@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
@@ -45,7 +46,7 @@ public class RestaurantMenuRestController extends RootController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> createRestaurant(@Valid @RequestBody Restaurant restaurant) {
         restaurant.setId(null);
         LOG.info("create {}", restaurant);
         Restaurant created = restaurantService.create(restaurant);
@@ -64,7 +65,7 @@ public class RestaurantMenuRestController extends RootController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateRestaurant(@PathVariable Integer id, @RequestBody Restaurant restaurant) {
+    public void updateRestaurant(@PathVariable Integer id, @Valid @RequestBody Restaurant restaurant) {
         restaurant.setId(id);
         LOG.info("update {} with id={}", restaurant, id);
         restaurantService.update(restaurant);
@@ -85,7 +86,7 @@ public class RestaurantMenuRestController extends RootController {
     }
 
     @PostMapping(value = "/{restaurantId}/menus", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Menu> createMenu(@RequestBody Menu menu, @PathVariable Integer restaurantId) {
+    public ResponseEntity<Menu> createMenu(@Valid @RequestBody Menu menu, @PathVariable Integer restaurantId) {
         menu.setId(null);
         menu.setRestaurant(null);
         LOG.info("create {} for restaurant {}", menu, restaurantId);
@@ -99,7 +100,7 @@ public class RestaurantMenuRestController extends RootController {
     }
 
     @PutMapping(value = "/{restaurantId}/menus/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateMenu(@RequestBody Menu menu, @PathVariable Integer restaurantId, @PathVariable Integer id) {
+    public void updateMenu(@Valid @RequestBody Menu menu, @PathVariable Integer restaurantId, @PathVariable Integer id) {
         menu.setId(id);
         LOG.info("update {} with id={} for restaurant {}", menu, id, restaurantId);
         menuService.update(menu, restaurantId);
