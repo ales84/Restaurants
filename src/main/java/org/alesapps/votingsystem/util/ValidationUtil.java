@@ -15,25 +15,14 @@ public class ValidationUtil {
         return checkNotFound(object, "id=" + id);
     }
 
-    public static <T> T checkNotFound(T object, String msg) {
-        checkNotFound(object != null, msg);
+    public static <T> T checkNotFound(T object, String arg) {
+        checkNotFound(object != null, arg);
         return object;
     }
 
-    public static void checkNotFound(boolean found, String msg) {
+    public static void checkNotFound(boolean found, String arg) {
         if (!found) {
-            throw new NotFoundException("Not found entity with " + msg);
-        }
-    }
-
-    public static <T> T checkNotFound(T object) {
-        checkNotFound(object != null);
-        return object;
-    }
-
-    public static void checkNotFound(boolean found) {
-        if (!found) {
-            throw new NotFoundException("Not found entity");
+            throw new NotFoundException(arg);
         }
     }
 
@@ -49,5 +38,15 @@ public class ValidationUtil {
         } else if (entity.getId() != id) {
             throw new IllegalArgumentException(entity + " must be with id=" + id);
         }
+    }
+
+    public static Throwable getRootCause(Throwable t) {
+        Throwable result = t;
+        Throwable cause;
+
+        while (null != (cause = result.getCause()) && (result != cause)) {
+            result = cause;
+        }
+        return result;
     }
 }
