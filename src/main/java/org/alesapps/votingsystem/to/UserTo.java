@@ -12,7 +12,7 @@ public class UserTo extends BaseTo {
     private String name;
 
     @NotBlank
-    @Length(min = 5)
+    @Length(min = 5, max = 32)
     private String password;
 
     public UserTo() {
