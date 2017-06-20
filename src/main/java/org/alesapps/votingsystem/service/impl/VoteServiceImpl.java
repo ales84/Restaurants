@@ -48,7 +48,8 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public Vote getByUserIdAndDate(int userId, LocalDate date) throws NotFoundException {
-        return ValidationUtil.checkNotFound(voteRepository.getByUserIdAndDate(userId, date));
+        return ValidationUtil.checkNotFound(voteRepository.getByUserIdAndDate(userId, date),
+                "user id=" + userId + ", date=" + date);
     }
 
     @Override
