@@ -1,7 +1,10 @@
 package org.alesapps.votingsystem.model;
 
+import org.alesapps.votingsystem.View;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -31,9 +34,11 @@ public class Menu extends BaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
+    @NotNull(groups = {View.ValidatedRestUI.class, Default.class})
     @Column(name = "date", columnDefinition = "timestamp default now()")
     private LocalDate date;
 
+    @NotNull(groups = {View.ValidatedRestUI.class, Default.class})
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu")
     private Set<Dish> dishes;
 
