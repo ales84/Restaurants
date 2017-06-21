@@ -1,6 +1,8 @@
 package org.alesapps.votingsystem.config;
 
 import org.alesapps.votingsystem.util.PasswordUtil;
+import org.alesapps.votingsystem.web.CustomAccessDeniedHandler;
+import org.alesapps.votingsystem.web.CustomAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -39,11 +41,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/restaurants").authenticated()
                 .antMatchers("/api/v1/menus").authenticated()
                 .and().httpBasic()
+                .authenticationEntryPoint(getAuthenticationEntryPoint())
+                .and().exceptionHandling()
+                .accessDeniedHandler(getAccessDeniedHandler())
+
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return PasswordUtil.getPasswordEncoder();
+    }
+
+    @Bean
+    public CustomAccessDeniedHandler getAccessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
+
+    @Bean
+    public CustomAuthenticationEntryPoint getAuthenticationEntryPoint() {
+        return new CustomAuthenticationEntryPoint();
     }
 }
