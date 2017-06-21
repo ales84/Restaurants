@@ -27,7 +27,7 @@ import java.util.Arrays;
 @ControllerAdvice(annotations = RestController.class)
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ExceptionInfoHandler {
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private static final Logger LOG = LoggerFactory.getLogger(ExceptionInfoHandler.class);
 
     @Autowired
     private MessageSource messageSource;
