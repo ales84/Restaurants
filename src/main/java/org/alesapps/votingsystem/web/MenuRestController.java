@@ -3,7 +3,6 @@ package org.alesapps.votingsystem.web;
 import org.alesapps.votingsystem.model.Menu;
 import org.alesapps.votingsystem.service.MenuService;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;

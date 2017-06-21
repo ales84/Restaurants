@@ -1,11 +1,6 @@
 package org.alesapps.votingsystem.web;
 
-import org.alesapps.votingsystem.util.exception.NotFoundException;
-import org.alesapps.votingsystem.util.exception.TooLateException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by Anatoliy Kozhayev on 03.05.2017.
