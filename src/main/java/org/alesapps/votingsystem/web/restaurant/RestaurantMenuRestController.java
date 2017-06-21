@@ -1,5 +1,6 @@
 package org.alesapps.votingsystem.web.restaurant;
 
+import org.alesapps.votingsystem.View;
 import org.alesapps.votingsystem.model.Menu;
 import org.alesapps.votingsystem.model.Restaurant;
 import org.alesapps.votingsystem.service.MenuService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -65,7 +67,7 @@ public class RestaurantMenuRestController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateRestaurant(@PathVariable Integer id, @Valid @RequestBody Restaurant restaurant) {
+    public void updateRestaurant(@Valid @RequestBody Restaurant restaurant, @PathVariable Integer id) {
         restaurant.setId(id);
         LOG.info("update {} with id={}", restaurant, id);
         restaurantService.update(restaurant);
@@ -86,7 +88,8 @@ public class RestaurantMenuRestController {
     }
 
     @PostMapping(value = "/{restaurantId}/menus", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Menu> createMenu(@Valid @RequestBody Menu menu, @PathVariable Integer restaurantId) {
+    public ResponseEntity<Menu> createMenu(@Validated(View.ValidatedRestUI.class) @RequestBody Menu menu,
+                                           @PathVariable Integer restaurantId) {
         menu.setId(null);
         menu.setRestaurant(null);
         LOG.info("create {} for restaurant {}", menu, restaurantId);
@@ -100,7 +103,8 @@ public class RestaurantMenuRestController {
     }
 
     @PutMapping(value = "/{restaurantId}/menus/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateMenu(@Valid @RequestBody Menu menu, @PathVariable Integer restaurantId, @PathVariable Integer id) {
+    public void updateMenu(@Validated(View.ValidatedRestUI.class) @RequestBody Menu menu,
+                           @PathVariable Integer restaurantId, @PathVariable Integer id) {
         menu.setId(id);
         LOG.info("update {} with id={} for restaurant {}", menu, id, restaurantId);
         menuService.update(menu, restaurantId);
