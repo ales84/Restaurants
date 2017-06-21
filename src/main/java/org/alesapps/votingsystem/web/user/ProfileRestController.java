@@ -1,4 +1,4 @@
-package org.alesapps.votingsystem.web;
+package org.alesapps.votingsystem.web.user;
 
 import org.alesapps.votingsystem.AuthorizedUser;
 import org.alesapps.votingsystem.model.User;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.alesapps.votingsystem.web.ProfileRestController.REST_URL;
+import static org.alesapps.votingsystem.web.user.ProfileRestController.REST_URL;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -20,7 +20,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  */
 @RestController
 @RequestMapping(REST_URL)
-public class ProfileRestController extends RootController {
+public class ProfileRestController {
     private static final Logger LOG = getLogger(ProfileRestController.class);
 
     static final String REST_URL = "/api/v1/profile";

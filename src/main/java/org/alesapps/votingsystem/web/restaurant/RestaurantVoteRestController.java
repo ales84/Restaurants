@@ -1,4 +1,4 @@
-package org.alesapps.votingsystem.web;
+package org.alesapps.votingsystem.web.restaurant;
 
 import org.alesapps.votingsystem.AuthorizedUser;
 import org.alesapps.votingsystem.model.Restaurant;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.alesapps.votingsystem.web.RestaurantVoteRestController.REST_URL;
+import static org.alesapps.votingsystem.web.restaurant.RestaurantVoteRestController.REST_URL;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -22,7 +22,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  */
 @RestController
 @RequestMapping(REST_URL)
-public class RestaurantVoteRestController extends RootController {
+public class RestaurantVoteRestController {
     private static final Logger LOG = getLogger(RestaurantVoteRestController.class);
 
     static final String REST_URL = "/api/v1/restaurants";

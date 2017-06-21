@@ -1,7 +1,7 @@
-package org.alesapps.votingsystem.web;
+package org.alesapps.votingsystem.web.menu;
 
-import org.alesapps.votingsystem.model.Vote;
-import org.alesapps.votingsystem.service.VoteService;
+import org.alesapps.votingsystem.model.Menu;
+import org.alesapps.votingsystem.service.MenuService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,30 +14,30 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.alesapps.votingsystem.web.VoteRestController.REST_URL;
+import static org.alesapps.votingsystem.web.menu.MenuRestController.REST_URL;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * Created by Anatoliy Kozhayev on 10.06.2017.
+ * Created by Anatoliy Kozhayev on 08.05.2017.
  */
 @RestController
 @RequestMapping(REST_URL)
-public class VoteRestController {
-    private static final Logger LOG = getLogger(VoteRestController.class);
+public class MenuRestController {
+    private static final Logger LOG = getLogger(MenuRestController.class);
 
-    static final String REST_URL = "/api/v1/admin/votes";
+    static final String REST_URL = "/api/v1/menus";
 
-    private VoteService voteService;
+    private MenuService menuService;
 
     @Autowired
-    public VoteRestController(VoteService voteService) {
-        this.voteService = voteService;
+    public MenuRestController(MenuService menuService) {
+        this.menuService = menuService;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Vote> getAll(@RequestParam(value = "date")
+    public List<Menu> getAll(@RequestParam(value = "date")
                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        LOG.info("getAll votes date {}", date);
-        return voteService.getAllByDate(date);
+        LOG.info("getAll menus date {}", date);
+        return menuService.getAllByDate(date);
     }
 }

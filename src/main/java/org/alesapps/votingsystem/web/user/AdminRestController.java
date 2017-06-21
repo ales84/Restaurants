@@ -1,4 +1,4 @@
-package org.alesapps.votingsystem.web;
+package org.alesapps.votingsystem.web.user;
 
 import org.alesapps.votingsystem.model.User;
 import org.alesapps.votingsystem.service.UserService;
@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
-import static org.alesapps.votingsystem.web.AdminRestController.REST_URL;
+import static org.alesapps.votingsystem.web.user.AdminRestController.REST_URL;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -21,7 +21,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  */
 @RestController
 @RequestMapping(REST_URL)
-public class AdminRestController extends RootController {
+public class AdminRestController {
     private static final Logger LOG = getLogger(AdminRestController.class);
 
     static final String REST_URL = "/api/v1/admin/users";
