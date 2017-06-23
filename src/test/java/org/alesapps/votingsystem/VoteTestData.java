@@ -4,8 +4,6 @@ import org.alesapps.votingsystem.model.BaseEntity;
 import org.alesapps.votingsystem.model.Vote;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.alesapps.votingsystem.RestaurantTestData.RESTAURANT1;
 import static org.alesapps.votingsystem.RestaurantTestData.RESTAURANT2;
