@@ -42,7 +42,7 @@ public class RestaurantVoteRestController {
         return restaurantService.getAll();
     }
 
-    @PostMapping(value = "/{restaurantId}/votes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{restaurantId}/votes", produces = MediaType.APPLICATION_JSON_VALUE)
     public Vote create(@PathVariable Integer restaurantId,
                        @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         Vote vote = new Vote(null, null, null, LocalDate.now());
