@@ -36,7 +36,8 @@ public class VoteServiceTest extends AbstractServiceTest {
     public void duplicateCreate() throws Exception {
         Vote duplicateVote = new Vote(null, null, null, VOTE1.getDate());
         if (LocalTime.now().isBefore(LocalTime.of(11, 0))) {
-            service.create(duplicateVote, VOTE1.getUser().getId(), RESTAURANT3.getId());
+            Vote created = service.create(duplicateVote, VOTE1.getUser().getId(), RESTAURANT3.getId());
+            duplicateVote.setId(created.getId());
             assertThat(service.getAll(), is(Matchers.containsInAnyOrder(VOTE1, VOTE2, VOTE3, duplicateVote)));
         } else {
             thrown.expect(TooLateException.class);
